@@ -1,0 +1,28 @@
+// New Contributor Setup Process
+digraph Contributor_Setup {
+	dpi=300 fontname=Arial nodesep=0.5 rankdir=TB ranksep=0.75 size="7.5,10" splines=ortho
+	node [fontname=Arial fontsize=14 height=0.6 margin="0.2,0.1" shape=box style="rounded,filled"]
+	edge [fontname=Arial fontsize=12 penwidth=1.5]
+	github_account [label="Create GitHub account
+(if needed)" fillcolor="#f0f4f8"]
+	install_git [label="Install Git" fillcolor="#e6e0f3"]
+	configure_git [label="Configure Git with
+username and email" fillcolor="#e6e0f3"]
+	github_auth [label="Set up GitHub authentication
+(SSH keys or token)" fillcolor="#f0f4f8"]
+	install_r [label="Install R and RStudio" fillcolor="#e0f3e0"]
+	fork_repo [label="Fork the main repository
+to your GitHub account" fillcolor="#f0f4f8"]
+	clone_fork [label="Clone your fork
+to local machine" fillcolor="#e6e0f3"]
+	add_upstream [label="Add main repo as
+upstream remote" fillcolor="#e6e0f3"]
+	github_account -> install_git
+	install_git -> configure_git
+	configure_git -> github_auth
+	github_auth -> install_r
+	install_r -> fork_repo
+	fork_repo -> clone_fork
+	clone_fork -> add_upstream
+	fontsize=18 label="Phase 1: New Contributor Setup" labelloc=t
+}

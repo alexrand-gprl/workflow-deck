@@ -11,6 +11,11 @@ format:
     height: 720
     fig-cap-location: margin
 ---
+```{r echo = FALSE}
+library(reticulate)
+use_condaenv("data", required = TRUE)
+
+```
 
 ## Overview
 
@@ -46,41 +51,285 @@ Content for the second slide
 
 - These tools are widely used, so we do our RAs and undergrads a service by having them adopt them -- they will serve them well in any data analysis context, and also are nice resume lines. 
 - They 
-- 
 
-## The Language R 
-<br>
-<br>
+
+## 
 <br>
 
-![](pics/rlang.jpg){#fig-rlang fig-caption=false}
+<img src="pics/rlang.jpg" width="200" alt="R language logo">
 
 - Open source
 - Functions!!!
+- Designed specifically for statistical analysis and data science
 
 
-## Git
+## 
+<img src="pics/git.png" width="200" alt="Git logo">
+<br>
 
-![](pics/git.png){#fig-rlang fig-caption=false}
+- 'Track Changes' on steroids
+- The most widely-used version control tool for data analysis
+- Free and open-source
 
-## Github
 
-![](pics/github.png){#fig-rlang fig-caption=false}
+## 
+<img src="pics/github.png" width="200" alt="GitHub logo">
+<br>
 
-## Renv
+- Website where your Git folders live.
+- Let's your whole team make changes to the codebase in a transparent and organized way.
+- Free and open-source.
 
-![](pics/renv.png){#fig-rlang fig-caption=false}
 
-## Targets
+## 
+<img src="pics/renv.png" width="200" alt="Renv logo">
+<br>
 
-![](pics/targets.svg){#fig-rlang fig-caption=false}
+- Project-specific package dependency management
+- Reproducible environments across machines
+- Isolates project dependencies from system libraries
 
-## Testthat
 
-![](pics/testthat.png){#fig-rlang fig-caption=false}
+## 
+<img src="pics/targets.svg" width="200" alt="Targets logo">
+<br>
+
+- Pipeline toolkit for reproducible data science workflows
+- Automatically detects which steps need to be rerun.
+- Free and open-source.
+
+
+## 
+<img src="pics/styler.png" width="200" alt="Styler logo">
+<br>
+
+- Automatically reformats all the code in the entire project without changing any of its functionality.
+- Lets you choose whatever formatting rules you want.
+- Free and open-source.
+
+
+## 
+<img src="pics/lintr.png" width="200" alt="Lintr logo">
+<br>
+
+- Automatically checks your code for common bugs, then yells at you if it finds any.
+- Can set it up to run automatically any time anybody tries to make changes to the code, preventing errors.
+- Free and open-source.
+
+
+## 
+<img src="pics/testthat.png" width="200" alt="Testthat logo">
+<br>
+
+- Lets you set up tests to see if your code actually does what you think.
+- Provides a basis for test-driven development.
+- Free and open-source.
+
+## High-level workflow
+
+```{python, echo = FALSE}
+import graphviz
+
+# Define colors for different types of activities
+github_color = '#f0f4f8'
+git_color = '#e6e0f3'
+r_tool_color = '#e0f3e0'
+testing_color = '#f3e0e0'
+styling_color = '#f8f4e0'
+setup_color = '#e0eef3'
+
+# DIAGRAM 1: Initial Contributor Setup
+def create_contributor_setup_diagram():
+    dot = graphviz.Digraph('Contributor_Setup', comment='New Contributor Setup Process')
+    
+    # Graph attributes
+    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
+             nodesep='0.5', ranksep='0.75', splines='ortho')
+    
+    # Node and edge defaults
+    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
+             fontsize='14', margin='0.2,0.1', height='0.6')
+    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
+    
+    # Nodes
+    dot.node('github_account', 'Create GitHub account\n(if needed)', fillcolor=github_color)
+    dot.node('install_git', 'Install Git', fillcolor=git_color)
+    dot.node('configure_git', 'Configure Git with\nusername and email', fillcolor=git_color)
+    dot.node('github_auth', 'Set up GitHub authentication\n(SSH keys or token)', fillcolor=github_color)
+    dot.node('install_r', 'Install R and RStudio', fillcolor=r_tool_color)
+    dot.node('fork_repo', 'Fork the main repository\nto your GitHub account', fillcolor=github_color)
+    dot.node('clone_fork', 'Clone your fork\nto local machine', fillcolor=git_color)
+    dot.node('add_upstream', 'Add main repo as\nupstream remote', fillcolor=git_color)
+    
+    # Edges
+    dot.edge('github_account', 'install_git')
+    dot.edge('install_git', 'configure_git')
+    dot.edge('configure_git', 'github_auth')
+    dot.edge('github_auth', 'install_r')
+    dot.edge('install_r', 'fork_repo')
+    dot.edge('fork_repo', 'clone_fork')
+    dot.edge('clone_fork', 'add_upstream')
+    
+    # Title
+    dot.attr(label='Phase 1: New Contributor Setup', labelloc='t', fontsize='18')
+    
+    # Output files
+    dot.format = 'png'
+    dot.render('contributor_setup_workflow', view=False)
+    dot.format = 'svg'
+    dot.render('contributor_setup_workflow_svg', view=False)
+    
+    return dot
+
+# DIAGRAM 2: Issue Creation Process
+def create_issue_diagram():
+    dot = graphviz.Digraph('Issue_Workflow', comment='Issue Creation Process')
+    
+    # Graph attributes
+    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
+             nodesep='0.5', ranksep='0.75', splines='ortho')
+    
+    # Node and edge defaults
+    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
+             fontsize='14', margin='0.2,0.1', height='0.6')
+    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
+    
+    # Nodes
+    dot.node('identify', 'RA identifies task\nthat needs to be done', fillcolor=setup_color)
+    dot.node('create_issue', 'Create GitHub Issue', fillcolor=github_color)
+    dot.node('add_description', 'Add detailed description\nof the required changes', fillcolor=github_color)
+    dot.node('add_labels', 'Add specific labels\n• Survey ID\n• Activity type (missing data, etc.)', 
+             fillcolor=github_color)
+    dot.node('assign_issue', 'Assign issue to contributor\n(or self-assign)', fillcolor=github_color)
+    dot.node('sync_fork', 'Sync fork with upstream\n(git fetch upstream)', fillcolor=git_color)
+    dot.node('branch', 'Create feature branch\nnamed after issue number\n(git checkout -b issue-123)', fillcolor=git_color)
+    
+    # Edges
+    dot.edge('identify', 'create_issue')
+    dot.edge('create_issue', 'add_description')
+    dot.edge('add_description', 'add_labels')
+    dot.edge('add_labels', 'assign_issue')
+    dot.edge('assign_issue', 'sync_fork')
+    dot.edge('sync_fork', 'branch')
+    
+    # Title
+    dot.attr(label='Phase 2: Issue Creation and Branch Setup', labelloc='t', fontsize='18')
+    
+    # Output files
+    dot.format = 'png'
+    dot.render('issue_workflow', view=False)
+    dot.format = 'svg'
+    dot.render('issue_workflow_svg', view=False)
+    
+    return dot
+
+# DIAGRAM 3: Development Process
+def create_development_diagram():
+    dot = graphviz.Digraph('Development_Workflow', comment='Development Process with R Tools')
+    
+    # Graph attributes
+    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
+             nodesep='0.5', ranksep='0.75', splines='ortho')
+    
+    # Node and edge defaults
+    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
+             fontsize='14', margin='0.2,0.1', height='0.6')
+    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
+    
+    # Nodes
+    dot.node('renv_restore', 'renv::restore()\nSet up project environment', fillcolor=r_tool_color)
+    dot.node('tar_make_initial', 'tar_make()\nVerify pipeline works before changes', fillcolor=r_tool_color)
+    dot.node('test_dir_initial', 'test_dir()\nConfirm all tests pass initially', fillcolor=testing_color)
+    dot.node('write_tests', 'Write new unit tests for\nthe required functionality', fillcolor=testing_color)
+    dot.node('run_tests', 'Run tests to confirm\nthey fail appropriately', fillcolor=testing_color)
+    dot.node('implement', 'Implement code changes\nto address the issue', fillcolor=r_tool_color)
+    dot.node('test_driven', 'Iterate between coding\nand testing', fillcolor=testing_color)
+    
+    # Edges
+    dot.edge('renv_restore', 'tar_make_initial')
+    dot.edge('tar_make_initial', 'test_dir_initial')
+    dot.edge('test_dir_initial', 'write_tests')
+    dot.edge('write_tests', 'run_tests')
+    dot.edge('run_tests', 'implement')
+    dot.edge('implement', 'test_driven')
+    dot.edge('test_driven', 'implement', label='Refine', constraint='false')
+    
+    # Title
+    dot.attr(label='Phase 3: Development Process', labelloc='t', fontsize='18')
+    
+    # Output files
+    dot.format = 'png'
+    dot.render('development_workflow', view=False)
+    dot.format = 'svg'
+    dot.render('development_workflow_svg', view=False)
+    
+    return dot
+
+# DIAGRAM 4: Finalization and PR Process
+def create_finalization_diagram():
+    dot = graphviz.Digraph('Finalization_Workflow', comment='Code Finalization and PR Process')
+    
+    # Graph attributes
+    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
+             nodesep='0.5', ranksep='0.75', splines='ortho')
+    
+    # Node and edge defaults
+    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
+             fontsize='14', margin='0.2,0.1', height='0.6')
+    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
+    
+    # Nodes
+    dot.node('styling', 'style_dir()\nFormat code consistently', fillcolor=styling_color)
+    dot.node('linting', 'lint_dir()\nIdentify any code issues', fillcolor=styling_color)
+    dot.node('fix_issues', 'Fix any issues identified\nby linter', fillcolor=styling_color)
+    dot.node('test_final', 'test_dir()\nVerify all tests pass', fillcolor=testing_color)
+    dot.node('tar_make_final', 'tar_make()\nVerify pipeline works with changes', fillcolor=r_tool_color)
+    dot.node('document', 'Update documentation\nif necessary', fillcolor=r_tool_color)
+    dot.node('commit', 'Commit changes with\nmeaningful message', fillcolor=git_color)
+    dot.node('push', 'Push branch to fork', fillcolor=git_color)
+    dot.node('pr', 'Open Pull Request\nreferencing the issue', fillcolor=github_color)
+    dot.node('review', 'Code Review Process', fillcolor=github_color)
+    dot.node('revisions', 'Make revisions\nif requested', fillcolor=r_tool_color)
+    dot.node('merge', 'PR approved and merged', fillcolor=github_color)
+    dot.node('close', 'Issue closed automatically\nby PR merge', fillcolor=github_color)
+    
+    # Edges
+    dot.edge('styling', 'linting')
+    dot.edge('linting', 'fix_issues')
+    dot.edge('fix_issues', 'test_final')
+    dot.edge('test_final', 'tar_make_final')
+    dot.edge('tar_make_final', 'document')
+    dot.edge('document', 'commit')
+    dot.edge('commit', 'push')
+    dot.edge('push', 'pr')
+    dot.edge('pr', 'review')
+    dot.edge('review', 'revisions', label='Changes requested')
+    dot.edge('revisions', 'styling', style='dashed', constraint='false')
+    dot.edge('review', 'merge', label='Approved')
+    dot.edge('merge', 'close')
+    
+    # Title
+    dot.attr(label='Phase 4: Finalization and Pull Request Process', labelloc='t', fontsize='18')
+    
+    # Output files
+    dot.format = 'png'
+    dot.render('finalization_workflow', view=False)
+    dot.format = 'svg'
+    dot.render('finalization_workflow_svg', view=False)
+    
+    return dot
+
+# Generate all four diagrams
+setup_dot = create_contributor_setup_diagram()
+issue_dot = create_issue_diagram()
+dev_dot = create_development_diagram()
+final_dot = create_finalization_diagram()
+
+print("Successfully created all four workflow diagrams")
+```
 
 ## Peoples' thoughts from yesterday:
 
 - Opportunities for RAs to learn.
-- Notion seems like a good tool for documenting questions.
+- Notion seems like a good tool for documenting questions, but GitHub issues are better because they map specific tasks to specific coders. 
 - Romil: we need more input from PIs during harmonization. Historically I've found GitHub actually helps with this, having PIs all weigh in and engage with each other in a single shared space that is documented forever. They tend to find it an engaging forum. 

@@ -1,0 +1,43 @@
+// Code Finalization and PR Process
+digraph Finalization_Workflow {
+	dpi=300 fontname=Arial nodesep=0.5 rankdir=TB ranksep=0.75 size="7.5,10" splines=ortho
+	node [fontname=Arial fontsize=14 height=0.6 margin="0.2,0.1" shape=box style="rounded,filled"]
+	edge [fontname=Arial fontsize=12 penwidth=1.5]
+	styling [label="style_dir()
+Format code consistently" fillcolor="#f8f4e0"]
+	linting [label="lint_dir()
+Identify any code issues" fillcolor="#f8f4e0"]
+	fix_issues [label="Fix any issues identified
+by linter" fillcolor="#f8f4e0"]
+	test_final [label="test_dir()
+Verify all tests pass" fillcolor="#f3e0e0"]
+	tar_make_final [label="tar_make()
+Verify pipeline works with changes" fillcolor="#e0f3e0"]
+	document [label="Update documentation
+if necessary" fillcolor="#e0f3e0"]
+	commit [label="Commit changes with
+meaningful message" fillcolor="#e6e0f3"]
+	push [label="Push branch to fork" fillcolor="#e6e0f3"]
+	pr [label="Open Pull Request
+referencing the issue" fillcolor="#f0f4f8"]
+	review [label="Code Review Process" fillcolor="#f0f4f8"]
+	revisions [label="Make revisions
+if requested" fillcolor="#e0f3e0"]
+	merge [label="PR approved and merged" fillcolor="#f0f4f8"]
+	close [label="Issue closed automatically
+by PR merge" fillcolor="#f0f4f8"]
+	styling -> linting
+	linting -> fix_issues
+	fix_issues -> test_final
+	test_final -> tar_make_final
+	tar_make_final -> document
+	document -> commit
+	commit -> push
+	push -> pr
+	pr -> review
+	review -> revisions [label="Changes requested"]
+	revisions -> styling [constraint=false style=dashed]
+	review -> merge [label=Approved]
+	merge -> close
+	fontsize=18 label="Phase 4: Finalization and Pull Request Process" labelloc=t
+}

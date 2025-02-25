@@ -1,0 +1,28 @@
+// Development Process with R Tools
+digraph Development_Workflow {
+	dpi=300 fontname=Arial nodesep=0.5 rankdir=TB ranksep=0.75 size="7.5,10" splines=ortho
+	node [fontname=Arial fontsize=14 height=0.6 margin="0.2,0.1" shape=box style="rounded,filled"]
+	edge [fontname=Arial fontsize=12 penwidth=1.5]
+	renv_restore [label="renv::restore()
+Set up project environment" fillcolor="#e0f3e0"]
+	tar_make_initial [label="tar_make()
+Verify pipeline works before changes" fillcolor="#e0f3e0"]
+	test_dir_initial [label="test_dir()
+Confirm all tests pass initially" fillcolor="#f3e0e0"]
+	write_tests [label="Write new unit tests for
+the required functionality" fillcolor="#f3e0e0"]
+	run_tests [label="Run tests to confirm
+they fail appropriately" fillcolor="#f3e0e0"]
+	implement [label="Implement code changes
+to address the issue" fillcolor="#e0f3e0"]
+	test_driven [label="Iterate between coding
+and testing" fillcolor="#f3e0e0"]
+	renv_restore -> tar_make_initial
+	tar_make_initial -> test_dir_initial
+	test_dir_initial -> write_tests
+	write_tests -> run_tests
+	run_tests -> implement
+	implement -> test_driven
+	test_driven -> implement [label=Refine constraint=false]
+	fontsize=18 label="Phase 3: Development Process" labelloc=t
+}

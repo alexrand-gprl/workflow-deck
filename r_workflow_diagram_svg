@@ -1,0 +1,41 @@
+// Development Workflow with R Tools
+digraph R_Development_Workflow {
+	dpi=300 fontname=Arial nodesep=0.5 rankdir=TB ranksep=0.75 size="8,11" splines=spline
+	node [fontname=Arial fontsize=14 height=0.6 margin="0.15,0.1" shape=box style="rounded,filled"]
+	edge [fontname=Arial fontsize=12 penwidth=1.5]
+	issue [label="Create GitHub Issue" fillcolor="#f0f4f8"]
+	assign [label="Assign Issue" fillcolor="#f0f4f8"]
+	fork [label="Fork Repository (new contributors)" fillcolor="#f0f4f8"]
+	branch [label="Create Feature Branch" fillcolor="#e6e0f3"]
+	develop [label="Development Work" fillcolor="#e0f3e0"]
+	pr [label="Create Pull Request" fillcolor="#f0f4f8"]
+	review [label="Code Review" fillcolor="#f0f4f8"]
+	merge [label="Merge to Main" fillcolor="#f0f4f8"]
+	renv [label="Set up project environment
+with renv" fillcolor="#e0f3e0"]
+	targets [label="Define analysis pipeline
+with targets" fillcolor="#e0f3e0"]
+	r_code [label="Write R code" fillcolor="#e0f3e0"]
+	lintr [label="Check code with lintr" fillcolor="#f8f4e0"]
+	styler [label="Format code with styler" fillcolor="#f8f4e0"]
+	testthat [label="Create & run tests
+with testthat" fillcolor="#f3e0e0"]
+	issue -> assign
+	assign -> fork [label="  (if needed)"]
+	assign -> branch [label="  (if already contributor)"]
+	fork -> branch
+	branch -> renv
+	renv -> develop
+	develop -> r_code
+	develop -> targets
+	r_code -> lintr
+	lintr -> styler
+	styler -> testthat
+	targets -> testthat [style=dashed]
+	testthat -> pr
+	pr -> review
+	review -> lintr [label="  revisions needed" constraint=false style=dashed]
+	review -> merge [label="  approved"]
+	fontsize=20 label="R Development Workflow with Git, GitHub and R Packages
+" labelloc=t
+}
