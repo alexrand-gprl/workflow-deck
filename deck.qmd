@@ -103,7 +103,7 @@ Content for the second slide
 <img src="pics/styler.png" width="200" alt="Styler logo">
 <br>
 
-- Automatically reformats all the code in the entire project without changing any of its functionality.
+- Automatically standardizes/reformats all the code in the entire project without changing any of its functionality.
 - Lets you choose whatever formatting rules you want.
 - Free and open-source.
 
@@ -127,205 +127,136 @@ Content for the second slide
 
 ## High-level workflow
 
-```{python, echo = FALSE}
-import graphviz
+- RA Technical Onboarding
+- Assigning Tasks
+- Writing New Code
+- Integrating That New Code
 
-# Define colors for different types of activities
-github_color = '#f0f4f8'
-git_color = '#e6e0f3'
-r_tool_color = '#e0f3e0'
-testing_color = '#f3e0e0'
-styling_color = '#f8f4e0'
-setup_color = '#e0eef3'
+## Technical Onboarding
+```{dot}
+//| fig-width: 4
+//| fig-height: 7
+digraph Contributor_Setup {
+  // Graph attributes
+  rankdir=TB;  // Top to bottom layout
+  fontname="Arial";
+  fontsize=16;
+  label="";
+  labelloc="t";
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, margin="0.1,0.1", width=1.2, height=0.4];
+  edge [fontname="Arial", fontsize=10, penwidth=1.0];
+  
+  // Nodes with colors (removed the specified steps)
+  github_account [label="Create GitHub account\n(if needed)", fillcolor="#f0f4f8", style="rounded,filled"];
+  github_auth [label="Set up GitHub authentication\n(SSH keys or token)", fillcolor="#f0f4f8", style="rounded,filled"];
+  fork_repo [label="Fork the main repository\nto your GitHub account", fillcolor="#f0f4f8", style="rounded,filled"];
+  clone_fork [label="Clone your fork\nto local machine", fillcolor="#e6e0f3", style="rounded,filled"];
+  
+  // Edges (updated to connect the remaining nodes)
+  github_account -> github_auth;
+  github_auth -> fork_repo;
+  fork_repo -> clone_fork;
+}
+```
 
-# DIAGRAM 1: Initial Contributor Setup
-def create_contributor_setup_diagram():
-    dot = graphviz.Digraph('Contributor_Setup', comment='New Contributor Setup Process')
-    
-    # Graph attributes
-    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
-             nodesep='0.5', ranksep='0.75', splines='ortho')
-    
-    # Node and edge defaults
-    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
-             fontsize='14', margin='0.2,0.1', height='0.6')
-    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
-    
-    # Nodes
-    dot.node('github_account', 'Create GitHub account\n(if needed)', fillcolor=github_color)
-    dot.node('install_git', 'Install Git', fillcolor=git_color)
-    dot.node('configure_git', 'Configure Git with\nusername and email', fillcolor=git_color)
-    dot.node('github_auth', 'Set up GitHub authentication\n(SSH keys or token)', fillcolor=github_color)
-    dot.node('install_r', 'Install R and RStudio', fillcolor=r_tool_color)
-    dot.node('fork_repo', 'Fork the main repository\nto your GitHub account', fillcolor=github_color)
-    dot.node('clone_fork', 'Clone your fork\nto local machine', fillcolor=git_color)
-    dot.node('add_upstream', 'Add main repo as\nupstream remote', fillcolor=git_color)
-    
-    # Edges
-    dot.edge('github_account', 'install_git')
-    dot.edge('install_git', 'configure_git')
-    dot.edge('configure_git', 'github_auth')
-    dot.edge('github_auth', 'install_r')
-    dot.edge('install_r', 'fork_repo')
-    dot.edge('fork_repo', 'clone_fork')
-    dot.edge('clone_fork', 'add_upstream')
-    
-    # Title
-    dot.attr(label='Phase 1: New Contributor Setup', labelloc='t', fontsize='18')
-    
-    # Output files
-    dot.format = 'png'
-    dot.render('contributor_setup_workflow', view=False)
-    dot.format = 'svg'
-    dot.render('contributor_setup_workflow_svg', view=False)
-    
-    return dot
+## Assigning Tasks
 
-# DIAGRAM 2: Issue Creation Process
-def create_issue_diagram():
-    dot = graphviz.Digraph('Issue_Workflow', comment='Issue Creation Process')
-    
-    # Graph attributes
-    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
-             nodesep='0.5', ranksep='0.75', splines='ortho')
-    
-    # Node and edge defaults
-    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
-             fontsize='14', margin='0.2,0.1', height='0.6')
-    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
-    
-    # Nodes
-    dot.node('identify', 'RA identifies task\nthat needs to be done', fillcolor=setup_color)
-    dot.node('create_issue', 'Create GitHub Issue', fillcolor=github_color)
-    dot.node('add_description', 'Add detailed description\nof the required changes', fillcolor=github_color)
-    dot.node('add_labels', 'Add specific labels\n• Survey ID\n• Activity type (missing data, etc.)', 
-             fillcolor=github_color)
-    dot.node('assign_issue', 'Assign issue to contributor\n(or self-assign)', fillcolor=github_color)
-    dot.node('sync_fork', 'Sync fork with upstream\n(git fetch upstream)', fillcolor=git_color)
-    dot.node('branch', 'Create feature branch\nnamed after issue number\n(git checkout -b issue-123)', fillcolor=git_color)
-    
-    # Edges
-    dot.edge('identify', 'create_issue')
-    dot.edge('create_issue', 'add_description')
-    dot.edge('add_description', 'add_labels')
-    dot.edge('add_labels', 'assign_issue')
-    dot.edge('assign_issue', 'sync_fork')
-    dot.edge('sync_fork', 'branch')
-    
-    # Title
-    dot.attr(label='Phase 2: Issue Creation and Branch Setup', labelloc='t', fontsize='18')
-    
-    # Output files
-    dot.format = 'png'
-    dot.render('issue_workflow', view=False)
-    dot.format = 'svg'
-    dot.render('issue_workflow_svg', view=False)
-    
-    return dot
+```{dot}
+//| fig-width: 4
+//| fig-height: 7
+digraph Issue_Workflow {
+  // Graph attributes
+  rankdir=TB;  // Top to bottom layout
+  fontname="Arial";
+  fontsize=16;
+  label="";
+  labelloc="t";
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, margin="0.1,0.1", width=1.2, height=0.4];
+  edge [fontname="Arial", fontsize=10, penwidth=1.0];
+  
+  // Nodes with colors (consolidated and removed sync_fork)
+  identify [label="RA identifies task\nthat needs to be done", fillcolor="#e0eef3", style="rounded,filled"];
+  create_issue [label="Create GitHub Issue\nwith informative labels\n(Survey ID, 'missing data', etc)", fillcolor="#f0f4f8", style="rounded,filled"];
+  assign_issue [label="Assign issue to contributor\n(or self-assign)", fillcolor="#f0f4f8", style="rounded,filled"];
+  branch [label="Create feature branch\nnamed after issue number", fillcolor="#e6e0f3", style="rounded,filled"];
+  
+  // Edges
+  identify -> create_issue;
+  create_issue -> assign_issue;
+  assign_issue -> branch;
+}
+```
 
-# DIAGRAM 3: Development Process
-def create_development_diagram():
-    dot = graphviz.Digraph('Development_Workflow', comment='Development Process with R Tools')
-    
-    # Graph attributes
-    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
-             nodesep='0.5', ranksep='0.75', splines='ortho')
-    
-    # Node and edge defaults
-    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
-             fontsize='14', margin='0.2,0.1', height='0.6')
-    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
-    
-    # Nodes
-    dot.node('renv_restore', 'renv::restore()\nSet up project environment', fillcolor=r_tool_color)
-    dot.node('tar_make_initial', 'tar_make()\nVerify pipeline works before changes', fillcolor=r_tool_color)
-    dot.node('test_dir_initial', 'test_dir()\nConfirm all tests pass initially', fillcolor=testing_color)
-    dot.node('write_tests', 'Write new unit tests for\nthe required functionality', fillcolor=testing_color)
-    dot.node('run_tests', 'Run tests to confirm\nthey fail appropriately', fillcolor=testing_color)
-    dot.node('implement', 'Implement code changes\nto address the issue', fillcolor=r_tool_color)
-    dot.node('test_driven', 'Iterate between coding\nand testing', fillcolor=testing_color)
-    
-    # Edges
-    dot.edge('renv_restore', 'tar_make_initial')
-    dot.edge('tar_make_initial', 'test_dir_initial')
-    dot.edge('test_dir_initial', 'write_tests')
-    dot.edge('write_tests', 'run_tests')
-    dot.edge('run_tests', 'implement')
-    dot.edge('implement', 'test_driven')
-    dot.edge('test_driven', 'implement', label='Refine', constraint='false')
-    
-    # Title
-    dot.attr(label='Phase 3: Development Process', labelloc='t', fontsize='18')
-    
-    # Output files
-    dot.format = 'png'
-    dot.render('development_workflow', view=False)
-    dot.format = 'svg'
-    dot.render('development_workflow_svg', view=False)
-    
-    return dot
+## Writing New Code
 
-# DIAGRAM 4: Finalization and PR Process
-def create_finalization_diagram():
-    dot = graphviz.Digraph('Finalization_Workflow', comment='Code Finalization and PR Process')
-    
-    # Graph attributes
-    dot.attr(rankdir='TB', size='7.5,10', dpi='300', fontname='Arial', 
-             nodesep='0.5', ranksep='0.75', splines='ortho')
-    
-    # Node and edge defaults
-    dot.attr('node', shape='box', style='rounded,filled', fontname='Arial', 
-             fontsize='14', margin='0.2,0.1', height='0.6')
-    dot.attr('edge', fontname='Arial', fontsize='12', penwidth='1.5')
-    
-    # Nodes
-    dot.node('styling', 'style_dir()\nFormat code consistently', fillcolor=styling_color)
-    dot.node('linting', 'lint_dir()\nIdentify any code issues', fillcolor=styling_color)
-    dot.node('fix_issues', 'Fix any issues identified\nby linter', fillcolor=styling_color)
-    dot.node('test_final', 'test_dir()\nVerify all tests pass', fillcolor=testing_color)
-    dot.node('tar_make_final', 'tar_make()\nVerify pipeline works with changes', fillcolor=r_tool_color)
-    dot.node('document', 'Update documentation\nif necessary', fillcolor=r_tool_color)
-    dot.node('commit', 'Commit changes with\nmeaningful message', fillcolor=git_color)
-    dot.node('push', 'Push branch to fork', fillcolor=git_color)
-    dot.node('pr', 'Open Pull Request\nreferencing the issue', fillcolor=github_color)
-    dot.node('review', 'Code Review Process', fillcolor=github_color)
-    dot.node('revisions', 'Make revisions\nif requested', fillcolor=r_tool_color)
-    dot.node('merge', 'PR approved and merged', fillcolor=github_color)
-    dot.node('close', 'Issue closed automatically\nby PR merge', fillcolor=github_color)
-    
-    # Edges
-    dot.edge('styling', 'linting')
-    dot.edge('linting', 'fix_issues')
-    dot.edge('fix_issues', 'test_final')
-    dot.edge('test_final', 'tar_make_final')
-    dot.edge('tar_make_final', 'document')
-    dot.edge('document', 'commit')
-    dot.edge('commit', 'push')
-    dot.edge('push', 'pr')
-    dot.edge('pr', 'review')
-    dot.edge('review', 'revisions', label='Changes requested')
-    dot.edge('revisions', 'styling', style='dashed', constraint='false')
-    dot.edge('review', 'merge', label='Approved')
-    dot.edge('merge', 'close')
-    
-    # Title
-    dot.attr(label='Phase 4: Finalization and Pull Request Process', labelloc='t', fontsize='18')
-    
-    # Output files
-    dot.format = 'png'
-    dot.render('finalization_workflow', view=False)
-    dot.format = 'svg'
-    dot.render('finalization_workflow_svg', view=False)
-    
-    return dot
+```{dot}
+//| fig-width: 4
+//| fig-height: 7
+digraph Development_Workflow {
+  // Graph attributes
+  rankdir=TB;  // Top to bottom layout
+  fontname="Arial";
+  fontsize=16;
+  label="";
+  labelloc="t";
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, margin="0.1,0.1", width=1.2, height=0.4];
+  edge [fontname="Arial", fontsize=10, penwidth=1.0];
+  
+  // Nodes with colors (streamlined)
+  renv_restore [label="renv::restore()\nSet up project environment", fillcolor="#e0f3e0", style="rounded,filled"];
+  tar_make_initial [label="targets::tar_make()\nVerify pipeline works\nbefore changes", fillcolor="#e0f3e0", style="rounded,filled"];
+  test_dir_initial [label="testthat::test_dir()\nConfirm all tests\npass initially", fillcolor="#f3e0e0", style="rounded,filled"];
+  write_tests [label="Write new unit tests for\nthe required functionality", fillcolor="#f3e0e0", style="rounded,filled"];
+  implement [label="Implement code changes\nto address the issue", fillcolor="#e0f3e0", style="rounded,filled"];
+  test_driven [label="Iterate between coding\nand testing", fillcolor="#f3e0e0", style="rounded,filled"];
+  
+  // Edges
+  renv_restore -> tar_make_initial;
+  tar_make_initial -> test_dir_initial;
+  test_dir_initial -> write_tests;
+  write_tests -> implement;
+  implement -> test_driven;
+  test_driven -> implement [label="Refine", constraint=false];
+}
+```
 
-# Generate all four diagrams
-setup_dot = create_contributor_setup_diagram()
-issue_dot = create_issue_diagram()
-dev_dot = create_development_diagram()
-final_dot = create_finalization_diagram()
+## Integrating That New Code
 
-print("Successfully created all four workflow diagrams")
+```{dot}
+//| fig-width: 4
+//| fig-height: 7
+digraph Finalization_Workflow {
+  // Graph attributes
+  rankdir=TB;  // Top to bottom layout
+  fontname="Arial";
+  fontsize=16;
+  label="";
+  labelloc="t";
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, margin="0.1,0.1", width=1.2, height=0.4];
+  edge [fontname="Arial", fontsize=10, penwidth=1.0];
+  
+  // Nodes with colors (removed test_dir and tar_make)
+  styling [label="style_dir()\nFormat code consistently", fillcolor="#f8f4e0", style="rounded,filled"];
+  linting [label="lint_dir()\nIdentify any code issues", fillcolor="#f8f4e0", style="rounded,filled"];
+  commit [label="Commit changes with\nmeaningful message", fillcolor="#e6e0f3", style="rounded,filled"];
+  push [label="Push branch to fork", fillcolor="#e6e0f3", style="rounded,filled"];
+  pr [label="Open Pull Request\nreferencing the issue", fillcolor="#f0f4f8", style="rounded,filled"];
+  review [label="Code Review Process", fillcolor="#f0f4f8", style="rounded,filled"];
+  merge [label="PR approved and merged", fillcolor="#f0f4f8", style="rounded,filled"];
+  back_to_prev [label="Back to previous slide", fillcolor="#ffffff", style="rounded,filled,dashed"];
+  
+  // Edges
+  styling -> linting;
+  linting -> commit;
+  commit -> push;
+  push -> pr;
+  pr -> review;
+  review -> back_to_prev [label="Changes\nrequested", style="dashed"];
+  review -> merge [label="Approved"];
+  
+  // Position the "back to prev" node above
+  {rank=min; back_to_prev}
+}
 ```
 
 ## Peoples' thoughts from yesterday:
