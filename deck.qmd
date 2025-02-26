@@ -1,5 +1,6 @@
 ---
-title: "Workflow and Tooling"
+title: "Utopia Lost"
+subtitle: "Towards a workflow for transparent meta analysis"
 author: ""
 format: 
   revealjs:
@@ -11,46 +12,68 @@ format:
     height: 720
     fig-cap-location: margin
 ---
+
 ```{r echo = FALSE}
 library(reticulate)
 use_condaenv("data", required = TRUE)
 
 ```
 
-## Overview
+![](pics/documents_comic.png){fig-align="center"}
 
-- Why did you hire me???
-- Why do we _all_ work here?
-- Imagine a Bayesian Utopia
-- New tools
+## 
 
-## Why did you hire me???
+### Part 1
+1. What are we doing??
+2. What would this look like _in an ideal world_?
+3. Why can't we do it that way?
+4. What would _doing our best_ look like?
+5. How do we do it?
 
-- Please tell me.
-- I've done a lot of Bayesian meta analysis of RCTs, and I'm good at R.
+<br>
 
-## Why do we all work here?
+### Part 2
+1. New tools
+2. New workflow
+3. Discussion
 
-Content for the second slide
+## What are we doing??
 
-## Imagine a Bayesian Utopia
+- Please tell me
+- We're trying to increase total human understanding of the mechanisms that can create poverty, the mechanisms that can end poverty, and how those mechanisms vary by context
+- We're trying to empower people with money to spend it in the most efficient way possible to meet their poverty-reduction goals
+- Other things???
 
-- Comprehensive Knowledge Integration: Systematic pre-registration, transparent search protocols, and inclusion of unpublished data to minimize publication bias, with rigorous documentation of all methodological decisions from paper selection through data extraction.
-- Sophisticated Measurement Harmonization: Latent variable modeling to reconcile diverse outcome measures across studies, with explicit modeling of measurement error, reliability coefficients, and detection bias to produce more accurate effect estimates.
-- Robust Bayesian Hierarchical Modeling: Fully Bayesian estimation with informative priors, multi-level structures capturing dependencies between studies, and explicit modeling of contextual variables and implementation features that drive heterogeneity.
-- Reproducibility Infrastructure: Open data repositories, containerized computational environments, complete code sharing with documentation, and interactive dashboards allowing non-technical folks to explore analytical decisions and sensitivity to alternative specifications.
-- Decision-Oriented Communication: Translation of statistical findings into practical significance through posterior predictive distributions, decision-theoretic frameworks for policy recommendations, and direct involvement of stakeholders in interpretation and implementation planning.
+## What would this look like in an ideal world?
 
-## It all starts with data quality, and data quality starts with workflow
+- Authors make their microdata, code, and detailed documentation publicly available
+- We download this microdata and harmonize it, also adding study-level metadata
+- We fit a big Bayesian multilevel model to infer treatment effects with lots of interactions on variables we care about
+- We bring these inferences together with detailed costing data for Bayesian cost-benefit analysis
+- We publish these results, get rich and famous, get tenure
+- We make these inferences publicly available via user-friendly tools for nontechnical folks/policymakers
 
-- Does our code actually do what we say it does? How do we know?
-- Can other people find/run/understand/edit/improve it?
-- Are our processes confusing and painful such that we call burn out?
+## Why can't we do it that way?
 
-## New Tools
+- Authors forget what they did, lose their data/code, etc.
+- Even when we can get data/code, nothing is documented clearly. So it takes a _huge_ amount of work (and code) to harmonize everything.
+- Sometimes studies are so different we have to gloss over those differences in order to create an analytically-tractable harmonized dataset. 
+- It is often unclear which studies or treatment-level factors drive variation, or how to create a general-enough list of such factors. 
+- Nobody has taught us how to do all this.
 
-- These tools are widely used, so we do our RAs and undergrads a service by having them adopt them -- they will serve them well in any data analysis context, and also are nice resume lines. 
-- They 
+## What would doing our best look like?
+
+- Make sure our code actually does what we say it does. 
+- Make sure other people can `find -> run -> understand -> edit -> improve` our code.
+- Make sure we have fun, learn stuff, and don't burn out.
+
+## How do we do it?
+
+- Version control
+- Continuous integration
+- Test-driven development
+- Documentation
+- Teamwork
 
 
 ## 
@@ -58,9 +81,10 @@ Content for the second slide
 
 <img src="pics/rlang.jpg" width="200" alt="R language logo">
 
-- Open source
-- Functions!!!
-- Designed specifically for statistical analysis and data science
+
+- Functional programming
+- Free and open-source
+
 
 
 ## 
@@ -77,7 +101,7 @@ Content for the second slide
 <br>
 
 - Website where your Git folders live.
-- Let's your whole team make changes to the codebase in a transparent and organized way.
+- Lets your whole team make changes to the codebase in a transparent and organized way.
 - Free and open-source.
 
 
@@ -112,18 +136,18 @@ Content for the second slide
 <img src="pics/lintr.png" width="200" alt="Lintr logo">
 <br>
 
-- Automatically checks your code for common bugs, then yells at you if it finds any.
-- Can set it up to run automatically any time anybody tries to make changes to the code, preventing errors.
-- Free and open-source.
+- Automatically checks your code for common bugs, then yells at you if it finds any
+- Can set it up to run automatically any time anybody tries to make changes to the code, preventing errors
+- Free and open-source
 
 
 ## 
 <img src="pics/testthat.png" width="200" alt="Testthat logo">
 <br>
 
-- Lets you set up tests to see if your code actually does what you think.
-- Provides a basis for test-driven development.
-- Free and open-source.
+- Set up tests to see if your code actually does what you think it does
+- Provides a basis for **test-driven development** -- set some milestones, then make sure each step _actually works_ before moving on to the next milestone
+- Free and open-source
 
 ## High-level workflow
 
@@ -259,8 +283,10 @@ digraph Finalization_Workflow {
 }
 ```
 
+## Other thoughts
+
+
 ## Peoples' thoughts from yesterday:
 
-- Opportunities for RAs to learn.
-- Notion seems like a good tool for documenting questions, but GitHub issues are better because they map specific tasks to specific coders. 
-- Romil: we need more input from PIs during harmonization. Historically I've found GitHub actually helps with this, having PIs all weigh in and engage with each other in a single shared space that is documented forever. They tend to find it an engaging forum. 
+- **Opportunities for team members to keep learning**. These tools are widely used, so we do our RAs and undergrads a service by having them adopt them -- they will serve them well in any data analysis context, and also are nice resume lines. 
+- **Romil: we need more input from PIs during harmonization.** Alex: Historically I've found GitHub actually helps with this, having PIs all weigh in and engage with each other in a single shared space that is documented forever. They tend to find it an engaging forum. 

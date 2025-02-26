@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="">
-  <title>Workflow and Tooling</title>
+  <title>Utopia Lost</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -326,7 +326,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Workflow and Tooling</h1>
+  <h1 class="title">Utopia Lost</h1>
+  <p class="subtitle">Towards a workflow for transparent meta analysis</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -337,63 +338,84 @@
 <div class="cell">
 
 </div>
-</section>
-<section id="overview" class="slide level2">
-<h2>Overview</h2>
-<ul>
-<li class="fragment">Why did you hire me???</li>
-<li class="fragment">Why do we <em>all</em> work here?</li>
-<li class="fragment">Imagine a Bayesian Utopia</li>
-<li class="fragment">New tools</li>
-</ul>
-</section>
-<section id="why-did-you-hire-me" class="slide level2">
-<h2>Why did you hire me???</h2>
-<ul>
-<li class="fragment">Please tell me.</li>
-<li class="fragment">I’ve done a lot of Bayesian meta analysis of RCTs, and I’m good at R.</li>
-</ul>
-</section>
-<section id="why-do-we-all-work-here" class="slide level2">
-<h2>Why do we all work here?</h2>
-<p>Content for the second slide</p>
-</section>
-<section id="imagine-a-bayesian-utopia" class="slide level2">
-<h2>Imagine a Bayesian Utopia</h2>
-<ul>
-<li class="fragment">Comprehensive Knowledge Integration: Systematic pre-registration, transparent search protocols, and inclusion of unpublished data to minimize publication bias, with rigorous documentation of all methodological decisions from paper selection through data extraction.</li>
-<li class="fragment">Sophisticated Measurement Harmonization: Latent variable modeling to reconcile diverse outcome measures across studies, with explicit modeling of measurement error, reliability coefficients, and detection bias to produce more accurate effect estimates.</li>
-<li class="fragment">Robust Bayesian Hierarchical Modeling: Fully Bayesian estimation with informative priors, multi-level structures capturing dependencies between studies, and explicit modeling of contextual variables and implementation features that drive heterogeneity.</li>
-<li class="fragment">Reproducibility Infrastructure: Open data repositories, containerized computational environments, complete code sharing with documentation, and interactive dashboards allowing non-technical folks to explore analytical decisions and sensitivity to alternative specifications.</li>
-<li class="fragment">Decision-Oriented Communication: Translation of statistical findings into practical significance through posterior predictive distributions, decision-theoretic frameworks for policy recommendations, and direct involvement of stakeholders in interpretation and implementation planning.</li>
-</ul>
-</section>
-<section id="it-all-starts-with-data-quality-and-data-quality-starts-with-workflow" class="slide level2">
-<h2>It all starts with data quality, and data quality starts with workflow</h2>
-<ul>
-<li class="fragment">Does our code actually do what we say it does? How do we know?</li>
-<li class="fragment">Can other people find/run/understand/edit/improve it?</li>
-<li class="fragment">Are our processes confusing and painful such that we call burn out?</li>
-</ul>
-</section>
-<section id="new-tools" class="slide level2">
-<h2>New Tools</h2>
-<ul>
-<li class="fragment">These tools are widely used, so we do our RAs and undergrads a service by having them adopt them – they will serve them well in any data analysis context, and also are nice resume lines.</li>
-<li class="fragment">They</li>
-</ul>
-</section>
+
+<img data-src="pics/documents_comic.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"></section>
 <section id="section" class="slide level2">
+<h2></h2>
+<h3 id="part-1">Part 1</h3>
+<ol type="1">
+<li class="fragment">What are we doing??</li>
+<li class="fragment">What would this look like <em>in an ideal world</em>?</li>
+<li class="fragment">Why can’t we do it that way?</li>
+<li class="fragment">What would <em>doing our best</em> look like?</li>
+<li class="fragment">How do we do it?</li>
+</ol>
+<p><br></p>
+<h3 id="part-2">Part 2</h3>
+<ol type="1">
+<li class="fragment">New tools</li>
+<li class="fragment">New workflow</li>
+<li class="fragment">Discussion</li>
+</ol>
+</section>
+<section id="what-are-we-doing" class="slide level2">
+<h2>What are we doing??</h2>
+<ul>
+<li class="fragment">Please tell me</li>
+<li class="fragment">We’re trying to increase total human understanding of the mechanisms that can create poverty, the mechanisms that can end poverty, and how those mechanisms vary by context</li>
+<li class="fragment">We’re trying to empower people with money to spend it in the most efficient way possible to meet their poverty-reduction goals</li>
+<li class="fragment">Other things???</li>
+</ul>
+</section>
+<section id="what-would-this-look-like-in-an-ideal-world" class="slide level2">
+<h2>What would this look like in an ideal world?</h2>
+<ul>
+<li class="fragment">Authors make their microdata, code, and detailed documentation publicly available</li>
+<li class="fragment">We download this microdata and harmonize it, also adding study-level metadata</li>
+<li class="fragment">We fit a big Bayesian multilevel model to infer treatment effects with lots of interactions on variables we care about</li>
+<li class="fragment">We bring these inferences together with detailed costing data for Bayesian cost-benefit analysis</li>
+<li class="fragment">We publish these results, get rich and famous, get tenure</li>
+<li class="fragment">We make these inferences publicly available via user-friendly tools for nontechnical folks/policymakers</li>
+</ul>
+</section>
+<section id="why-cant-we-do-it-that-way" class="slide level2">
+<h2>Why can’t we do it that way?</h2>
+<ul>
+<li class="fragment">Authors forget what they did, lose their data/code, etc.</li>
+<li class="fragment">Even when we can get data/code, nothing is documented clearly. So it takes a <em>huge</em> amount of work (and code) to harmonize everything.</li>
+<li class="fragment">Sometimes studies are so different we have to gloss over those differences in order to create an analytically-tractable harmonized dataset.</li>
+<li class="fragment">It is often unclear which studies or treatment-level factors drive variation, or how to create a general-enough list of such factors.</li>
+<li class="fragment">Nobody has taught us how to do all this.</li>
+</ul>
+</section>
+<section id="what-would-doing-our-best-look-like" class="slide level2">
+<h2>What would doing our best look like?</h2>
+<ul>
+<li class="fragment">Make sure our code actually does what we say it does.</li>
+<li class="fragment">Make sure other people can <code>find -&gt; run -&gt; understand -&gt; edit -&gt; improve</code> our code.</li>
+<li class="fragment">Make sure we have fun, learn stuff, and don’t burn out.</li>
+</ul>
+</section>
+<section id="how-do-we-do-it" class="slide level2">
+<h2>How do we do it?</h2>
+<ul>
+<li class="fragment">Version control</li>
+<li class="fragment">Continuous integration</li>
+<li class="fragment">Test-driven development</li>
+<li class="fragment">Documentation</li>
+<li class="fragment">Teamwork</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2">
 <h2></h2>
 <p><br></p>
 
 <img src="pics/rlang.jpg" width="200" alt="R language logo" class="r-stretch"><ul>
-<li class="fragment">Open source</li>
-<li class="fragment">Functions!!!</li>
-<li class="fragment">Designed specifically for statistical analysis and data science</li>
+<li class="fragment">Functional programming</li>
+<li class="fragment">Free and open-source</li>
 </ul>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <p><img src="pics/git.png" width="200" alt="Git logo"> <br></p>
 <ul>
@@ -402,16 +424,16 @@
 <li class="fragment">Free and open-source</li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p><img src="pics/github.png" width="200" alt="GitHub logo"> <br></p>
 <ul>
 <li class="fragment">Website where your Git folders live.</li>
-<li class="fragment">Let’s your whole team make changes to the codebase in a transparent and organized way.</li>
+<li class="fragment">Lets your whole team make changes to the codebase in a transparent and organized way.</li>
 <li class="fragment">Free and open-source.</li>
 </ul>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <p><img src="pics/renv.png" width="200" alt="Renv logo"> <br></p>
 <ul>
@@ -420,7 +442,7 @@
 <li class="fragment">Isolates project dependencies from system libraries</li>
 </ul>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <p><img src="pics/targets.svg" width="200" alt="Targets logo"> <br></p>
 <ul>
@@ -429,7 +451,7 @@
 <li class="fragment">Free and open-source.</li>
 </ul>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p><img src="pics/styler.png" width="200" alt="Styler logo"> <br></p>
 <ul>
@@ -438,22 +460,22 @@
 <li class="fragment">Free and open-source.</li>
 </ul>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2></h2>
 <p><img src="pics/lintr.png" width="200" alt="Lintr logo"> <br></p>
 <ul>
-<li class="fragment">Automatically checks your code for common bugs, then yells at you if it finds any.</li>
-<li class="fragment">Can set it up to run automatically any time anybody tries to make changes to the code, preventing errors.</li>
-<li class="fragment">Free and open-source.</li>
+<li class="fragment">Automatically checks your code for common bugs, then yells at you if it finds any</li>
+<li class="fragment">Can set it up to run automatically any time anybody tries to make changes to the code, preventing errors</li>
+<li class="fragment">Free and open-source</li>
 </ul>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <p><img src="pics/testthat.png" width="200" alt="Testthat logo"> <br></p>
 <ul>
-<li class="fragment">Lets you set up tests to see if your code actually does what you think.</li>
-<li class="fragment">Provides a basis for test-driven development.</li>
-<li class="fragment">Free and open-source.</li>
+<li class="fragment">Set up tests to see if your code actually does what you think it does</li>
+<li class="fragment">Provides a basis for <strong>test-driven development</strong> – set some milestones, then make sure each step <em>actually works</em> before moving on to the next milestone</li>
+<li class="fragment">Free and open-source</li>
 </ul>
 </section>
 <section id="high-level-workflow" class="slide level2">
@@ -812,12 +834,14 @@
 </div>
 </div>
 </section>
+<section id="other-thoughts" class="slide level2">
+<h2>Other thoughts</h2>
+</section>
 <section id="peoples-thoughts-from-yesterday" class="slide level2">
 <h2>Peoples’ thoughts from yesterday:</h2>
 <ul>
-<li class="fragment">Opportunities for RAs to learn.</li>
-<li class="fragment">Notion seems like a good tool for documenting questions, but GitHub issues are better because they map specific tasks to specific coders.</li>
-<li class="fragment">Romil: we need more input from PIs during harmonization. Historically I’ve found GitHub actually helps with this, having PIs all weigh in and engage with each other in a single shared space that is documented forever. They tend to find it an engaging forum.</li>
+<li class="fragment"><strong>Opportunities for team members to keep learning</strong>. These tools are widely used, so we do our RAs and undergrads a service by having them adopt them – they will serve them well in any data analysis context, and also are nice resume lines.</li>
+<li class="fragment"><strong>Romil: we need more input from PIs during harmonization.</strong> Alex: Historically I’ve found GitHub actually helps with this, having PIs all weigh in and engage with each other in a single shared space that is documented forever. They tend to find it an engaging forum.</li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
