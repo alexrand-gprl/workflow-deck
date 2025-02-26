@@ -39,10 +39,9 @@ use_condaenv("data", required = TRUE)
 
 ## What are we doing??
 
-- Please tell me
 - We're trying to increase total human understanding of the mechanisms that can create poverty, the mechanisms that can end poverty, and how those mechanisms vary by context
 - We're trying to empower people with money to spend it in the most efficient way possible to meet their poverty-reduction goals
-- Other things???
+- Is this right??
 
 ## What would this look like in an ideal world?
 
@@ -50,22 +49,24 @@ use_condaenv("data", required = TRUE)
 - We download this microdata and harmonize it, also adding study-level metadata
 - We fit a big Bayesian multilevel model to infer treatment effects with lots of interactions on variables we care about
 - We bring these inferences together with detailed costing data for Bayesian cost-benefit analysis
-- We publish these results, get rich and famous, get tenure
 - We make these inferences publicly available via user-friendly tools for nontechnical folks/policymakers
+- We publish these results, get rich and famous, get tenure
 
 ## Why can't we do it that way?
 
-- Authors forget what they did, lose their data/code, etc.
-- Even when we can get data/code, nothing is documented clearly. So it takes a _huge_ amount of work (and code) to harmonize everything.
-- Sometimes studies are so different we have to gloss over those differences in order to create an analytically-tractable harmonized dataset. 
-- It is often unclear which studies or treatment-level factors drive variation, or how to create a general-enough list of such factors. 
-- Nobody has taught us how to do all this.
+- Authors forget what they did, lose their data/code, etc
+- Even when we can get data/code, nothing is documented clearly. So it takes an insane amount of work (and code) to harmonize everything
+- Sometimes studies are so different we have to gloss over those differences in order to create an analytically-tractable harmonized dataset
+- It is often unclear which studies or treatment-level factors drive variation, or how to create a general-enough list of such factors
+- Nobody has taught us how to do all this!
 
 ## What would doing our best look like?
 
 - Make sure our code actually does what we say it does. 
 - Make sure other people can `find -> run -> understand -> edit -> improve` our code.
 - Make sure we have fun, learn stuff, and don't burn out.
+
+![](pics/hadley.jpg){width="100%"}
 
 ## How do we do it?
 
@@ -81,8 +82,8 @@ use_condaenv("data", required = TRUE)
 
 <img src="pics/rlang.jpg" width="200" alt="R language logo">
 
-
-- Functional programming
+- Vast library of pipelining + analysis tools
+- Functional programming!!
 - Free and open-source
 
 
